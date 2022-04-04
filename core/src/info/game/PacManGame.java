@@ -32,17 +32,6 @@ public class PacManGame extends ApplicationAdapter {
 	private SpriteBatch batch;
 
 
-
-
-	OrthographicCamera camera;
-	Texture pacManImage;
-	Texture ghostOneImage;
-	Sound deathPacMan;
-	Sound chompPacMan;
-	Music beginningPacMan;
-	Rectangle pacMan;
-	Rectangle ghostOne;
-
 	@Override
 	public void create(){
 		batch = new SpriteBatch();

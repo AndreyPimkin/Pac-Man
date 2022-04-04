@@ -29,8 +29,8 @@ public class PacMan {
         if (position.x > PacManGame.WIDTH - 35) {
             position.x = PacManGame.WIDTH - 35;
         }
-        if (position.y < 0) {
-            position.y = 0;
+        if (position.y < 111) {
+            position.y = 111;
         }
         if (position.y > PacManGame.HEIGHT - 35) {
             position.y = PacManGame.HEIGHT - 35;
