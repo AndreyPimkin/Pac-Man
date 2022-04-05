@@ -73,6 +73,15 @@ public class PacMan {
         else if (position.y < 343 && position.y > 208 && position.x < 524 && position.x > 477) {
             position.x = 525;
         }
+//hjjjjjjjjjjjjjjjjjjjjjjj
+        if (position.y > 178 && position.x < 523 && position.x > 267 && position.y < 205) {
+            position.y = 205;
+        }
+        else if (position.y < 178 && position.x < 523 && position.x > 267 & position.y > 207) {
+            position.y = 207;
+        }
+
+
         pacManCube.setPosition(position.x, position.y);
 
     }
