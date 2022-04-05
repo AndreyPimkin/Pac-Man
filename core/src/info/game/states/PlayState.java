@@ -14,6 +14,7 @@ public class PlayState extends State {
     private PacMan pacMan;
     private Texture bg;
     private Ghost ghost;
+    private String pacManOrin = "RIGHT";
     public static final int GHOST_MOVE = 10;
 
 
@@ -29,15 +30,19 @@ public class PlayState extends State {
     @Override
     protected void handleInput() {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            pacManOrin = "LEFT";
             pacMan.moveLeft();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            pacManOrin = "RIGHT";
             pacMan.moveRight();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+            pacManOrin = "UP";
             pacMan.moveUp();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+            pacManOrin = "DOWN";
             pacMan.moveDown();
         }
 
@@ -61,7 +66,23 @@ public class PlayState extends State {
        // sb.setProjectionMatrix(camera.combined);
         sb.begin();
         sb.draw(bg, 0, 0); // фон для второго экрана
-        sb.draw(pacMan.getPacMan(), pacMan.getPosition().x,pacMan.getPosition().y);
+        switch (pacManOrin) {
+            case "RIGHT":
+                sb.draw(pacMan.getPacManRight(), pacMan.getPosition().x, pacMan.getPosition().y);
+                break;
+            case "LEFT":
+                sb.draw(pacMan.getPacManLeft(), pacMan.getPosition().x, pacMan.getPosition().y);
+                break;
+            case "UP":
+                sb.draw(pacMan.getPacManUp(), pacMan.getPosition().x, pacMan.getPosition().y);
+                break;
+            case "DOWN":
+                sb.draw(pacMan.getPacManDown(), pacMan.getPosition().x, pacMan.getPosition().y);
+                break;
+        }
+
+
+
         sb.draw(ghost.getGhostOne(), ghost.getPosGhostOne().x, ghost.getPosGhostOne().y);
         sb.end();
 

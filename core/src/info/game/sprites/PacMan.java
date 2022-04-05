@@ -7,19 +7,37 @@ import info.game.PacManGame;
 
 public class PacMan {
     private Vector3 position;
-    private Texture pacMan;
+    private Texture pacManRight;
+    private Texture pacManLeft;
+    private Texture pacManUp;
+    private Texture pacManDown;
+
+    public Texture getPacManLeft() {
+        return pacManLeft;
+    }
+
+    public Texture getPacManUp() {
+        return pacManUp;
+    }
+
+    public Texture getPacManDown() {
+        return pacManDown;
+    }
 
     public PacMan(int x, int y) {
         position = new Vector3(PacManGame.WIDTH / 2 - 35 / 2, 208, 0);
-        pacMan = new Texture("Picture/pacMan.png");
+        pacManRight = new Texture("Picture/pacManRight.png");
+        pacManLeft = new Texture("Picture/pacManLeft.png");
+        pacManUp = new Texture("Picture/pacManUp.png");
+        pacManDown = new Texture("Picture/pacManDown.png");
     }
 
     public Vector3 getPosition() {
         return position;
     }
 
-    public Texture getPacMan() {
-        return pacMan;
+    public Texture getPacManRight() {
+        return pacManRight;
     }
 
     public void update(float dt) {
