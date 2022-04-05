@@ -32,6 +32,7 @@ public class PlayState extends State {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             pacManOrin = "LEFT";
             pacMan.moveLeft();
+
         }
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
             pacManOrin = "RIGHT";
@@ -56,6 +57,9 @@ public class PlayState extends State {
         for(int i = 0; i < 100; i++){
             ghost.reposition();
 
+        }
+        if (ghost.collides(pacMan.getPacManCube())){
+            gsm.set((new PlayState(gsm)));
         }
 
 

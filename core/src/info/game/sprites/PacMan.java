@@ -1,9 +1,12 @@
 package info.game.sprites;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 import info.game.PacManGame;
+import info.game.states.PlayState;
 
 public class PacMan {
     private Vector3 position;
@@ -11,6 +14,7 @@ public class PacMan {
     private Texture pacManLeft;
     private Texture pacManUp;
     private Texture pacManDown;
+    private Rectangle pacManCube;
 
     public Texture getPacManLeft() {
         return pacManLeft;
@@ -30,6 +34,7 @@ public class PacMan {
         pacManLeft = new Texture("Picture/pacManLeft.png");
         pacManUp = new Texture("Picture/pacManUp.png");
         pacManDown = new Texture("Picture/pacManDown.png");
+        pacManCube = new Rectangle(PacManGame.WIDTH / 2 - 35 / 2, 208,35, 35);
     }
 
     public Vector3 getPosition() {
@@ -68,10 +73,11 @@ public class PacMan {
         else if (position.y < 343 && position.y > 208 && position.x < 524 && position.x > 477) {
             position.x = 525;
         }
+        pacManCube.setPosition(position.x, position.y);
 
-
-
-
+    }
+    public Rectangle getPacManCube(){
+        return pacManCube;
     }
 
     public void moveLeft() {
