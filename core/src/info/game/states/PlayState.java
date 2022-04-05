@@ -2,10 +2,12 @@ package info.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import info.game.PacManGame;
+import info.game.sprites.Animation;
 import info.game.sprites.Ghost;
 import info.game.sprites.PacMan;
 
@@ -14,10 +16,7 @@ public class PlayState extends State {
     private PacMan pacMan;
     private Texture bg;
     private Ghost ghost;
-    private String pacManOrin = "RIGHT";
-    public static final int GHOST_MOVE = 10;
-
-
+    public static String pacManOrin = "RIGHT";
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -59,7 +58,9 @@ public class PlayState extends State {
 
         }
         if (ghost.collides(pacMan.getPacManCube())){
-            gsm.set((new PlayState(gsm)));
+            PacManGame.MUSIC = "TWO";
+            gsm.set((new GameOver(gsm)));
+
         }
 
 
@@ -85,8 +86,6 @@ public class PlayState extends State {
                 break;
         }
 
-
-
         sb.draw(ghost.getGhostOne(), ghost.getPosGhostOne().x, ghost.getPosGhostOne().y);
         sb.end();
 
@@ -94,6 +93,9 @@ public class PlayState extends State {
 
     @Override
     public void dispose() {
+        bg.dispose();
+        pacMan.dispose();
+        ghost.dispose();
 
     }
 }

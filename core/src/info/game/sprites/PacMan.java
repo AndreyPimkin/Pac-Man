@@ -2,6 +2,7 @@ package info.game.sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
@@ -15,37 +16,58 @@ public class PacMan {
     private Texture pacManUp;
     private Texture pacManDown;
     private Rectangle pacManCube;
+    private Animation pacManAnimation;
 
-    public Texture getPacManLeft() {
-        return pacManLeft;
+
+
+    public TextureRegion getPacManLeft() {
+        return pacManAnimation.getFrame();
     }
-
-    public Texture getPacManUp() {
-        return pacManUp;
+    public TextureRegion getPacManRight() {
+        return pacManAnimation.getFrame();
     }
-
-    public Texture getPacManDown() {
-        return pacManDown;
+    public TextureRegion getPacManUp() {
+        return pacManAnimation.getFrame();
+    }
+    public TextureRegion getPacManDown() {
+        return pacManAnimation.getFrame();
     }
 
     public PacMan(int x, int y) {
-        position = new Vector3(PacManGame.WIDTH / 2 - 35 / 2, 208, 0);
-        pacManRight = new Texture("Picture/pacManRight.png");
-        pacManLeft = new Texture("Picture/pacManLeft.png");
-        pacManUp = new Texture("Picture/pacManUp.png");
-        pacManDown = new Texture("Picture/pacManDown.png");
-        pacManCube = new Rectangle(PacManGame.WIDTH / 2 - 35 / 2, 208,35, 35);
+        position = new Vector3(x/ 2 - 35 / 2, 208, 0);
+        pacManLeft = new Texture("Picture/leftFullPacMan.png");
+        pacManRight = new Texture("Picture/rightFullPacMan.png");
+        pacManUp = new Texture("Picture/upFullPacMan.png");
+        pacManDown = new Texture("Picture/downFullPacMan.png");
+
+        switch (PlayState.pacManOrin) {
+            case "LEFT":
+                pacManAnimation =new Animation(new TextureRegion(pacManLeft), 3, 0.5f);
+                break;
+            case "RIGHT":
+                pacManAnimation =new Animation(new TextureRegion(pacManRight), 3, 0.5f);
+                break;
+            case "UP":
+                pacManAnimation =new Animation(new TextureRegion(pacManUp), 3, 0.5f);
+                break;
+            case "DOWN":
+                pacManAnimation =new Animation(new TextureRegion(pacManDown), 3, 0.5f);
+                break;
+        }
+        pacManCube = new Rectangle(x/ 2 - 35 / 2, 208,35, 35);
     }
 
     public Vector3 getPosition() {
         return position;
     }
-
-    public Texture getPacManRight() {
-        return pacManRight;
+    public Rectangle getPacManCube(){
+        return pacManCube;
     }
 
+
     public void update(float dt) {
+        pacManAnimation.update(dt);
+
         if (position.x < 0) {
             position.x = 0;
         }
@@ -76,25 +98,32 @@ public class PacMan {
         pacManCube.setPosition(position.x, position.y);
 
     }
-    public Rectangle getPacManCube(){
-        return pacManCube;
-    }
+
 
     public void moveLeft() {
         position.x -= PacManGame.SPEED;
     }
 
     public void moveRight() {
+
         position.x += PacManGame.SPEED;
     }
 
     public void moveUp() {
+
         position.y += PacManGame.SPEED;
     }
 
     public void moveDown() {
+
         position.y -= PacManGame.SPEED;
     }
 
 
+    public void dispose() {
+        pacManLeft.dispose();
+        pacManRight.dispose();
+        pacManUp.dispose();
+        pacManDown.dispose();
+    }
 }

@@ -45,4 +45,9 @@ public class Ghost {
     public boolean collides(Rectangle player){
         return  player.overlaps((ghostOneCube));
     }
+
+    public void dispose() {
+        ghostOne.dispose();
+
+    }
 }
