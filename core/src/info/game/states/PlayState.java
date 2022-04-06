@@ -5,9 +5,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
 
 import info.game.PacManGame;
 import info.game.sprites.Animation;
+import info.game.sprites.Dot;
 import info.game.sprites.Ghost;
 import info.game.sprites.PacMan;
 
@@ -17,6 +19,11 @@ public class PlayState extends State {
     private Texture bg;
     private Ghost ghost;
     public static String pacManOrin = "RIGHT";
+    public static int SPACING = 15;
+    public static int DOTS_COUNT = 100;
+    private Dot dot;
+    private Array<Dot> dots;
+
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -24,6 +31,27 @@ public class PlayState extends State {
         bg = new Texture("Picture/playBackground.jpg");
         ghost = new Ghost(PacManGame.WIDTH/2 -35/2, 275);
        // camera.setToOrtho(false, 25, 25);
+        dots = new Array<Dot>();
+        for(int i = 0;  i < DOTS_COUNT; i++){
+            if(i < 15){
+                dots.add(new Dot(278, i*SPACING + Dot.DOTS_SIZE + 150));
+            }
+            else if(i >= 15 && i < 32){
+                dots.add(new Dot(i*SPACING + Dot.DOTS_SIZE + 65, 366));
+            }
+            else if(i >= 32 && i < 46){
+                dots.add(new Dot(535, 833 - (i * SPACING)));
+            }
+            else if(i >= 47 && i < 63){
+                dots.add(new Dot(i*SPACING + Dot.DOTS_SIZE - 415, 215));
+            }
+            else if(i >= 63 && i < 70){
+                dots.add(new Dot(i*SPACING + Dot.DOTS_SIZE - 660, 155));
+            }
+            else if(i >= 70 && i < 76){
+                dots.add(new Dot(i*SPACING + Dot.DOTS_SIZE - 610, 155));
+            }
+        }
     }
 
     @Override
@@ -57,6 +85,7 @@ public class PlayState extends State {
             ghost.reposition();
 
         }
+
         if (ghost.collides(pacMan.getPacManCube())){
             PacManGame.MUSIC = "TWO";
             gsm.set((new GameOver(gsm)));
@@ -87,6 +116,9 @@ public class PlayState extends State {
         }
 
         sb.draw(ghost.getGhostOne(), ghost.getPosGhostOne().x, ghost.getPosGhostOne().y);
+        for(Dot dot : dots){
+            sb.draw(dot.getDot(), dot.getPosDot().x, dot.getPosDot().y);
+        }
         sb.end();
 
     }

@@ -80,7 +80,7 @@ public class PacMan {
         if (position.y > PacManGame.HEIGHT - 35) {
             position.y = PacManGame.HEIGHT - 35;
         }
-
+//////////////
 
         if (position.y > 242 && position.x < 523 && position.x > 267 && position.y < 277) {
             position.y = 277;
@@ -89,12 +89,14 @@ public class PacMan {
             position.y = 207;
         }
 
+
         if (position.y < 343 && position.y > 208 && position.x > 266 && position.x < 348) {
             position.x = 265;
         }
         else if (position.y < 343 && position.y > 208 && position.x < 524 && position.x > 477) {
             position.x = 525;
         }
+
 //hjjjjjjjjjjjjjjjjjjjjjjj 178
         if (position.y > 150 && position.x < 523 && position.x > 267 && position.y < 205) {
             position.y = 205;
@@ -109,7 +111,7 @@ public class PacMan {
             position.x = 525;
         }
 //из-за чего не робит
-        if (position.y > 110 && position.x < 523 && position.x > 267 && position.y < 205) {
+        if (position.y > 177 && position.x < 523 && position.x > 267 && position.y < 205) {
             position.y = 205;
         }
         else if (position.y < 110 && position.x < 523 && position.x > 267 & position.y > 207) {

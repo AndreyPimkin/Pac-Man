@@ -32,7 +32,7 @@ public class PacManGame extends ApplicationAdapter {
 	public static final int WIDTH = 825;
 	public static final int HEIGHT = 525;
 	public static final int SPEED = 2;
-	public static final float VOLUME = 0.2f;
+	public static final float VOLUME = 0f;
 	public static final String TITLE = "Pac-Man";
 	public static final String ICON = "Picture/icon.png";
 	private GameStateManager gsm;
