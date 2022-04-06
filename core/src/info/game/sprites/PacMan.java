@@ -82,8 +82,8 @@ public class PacMan {
         }
 
 
-        if (position.y > 242 && position.x < 523 && position.x > 267 && position.y < 277) {
-            position.y = 277;
+        if (position.y > 242 && position.x < 523 && position.x > 267 && position.y < 346) {
+            position.y = 346;
         }
         else if (position.y < 242 && position.x < 523 && position.x > 267 & position.y > 207) {
             position.y = 207;
@@ -110,11 +110,13 @@ public class PacMan {
         }
 //из-за чего не робит
         if (position.y > 110 && position.x < 523 && position.x > 267 && position.y < 205) {
-            position.y = 205;
+            position.x = 322;
         }
         else if (position.y < 110 && position.x < 523 && position.x > 267 & position.y > 207) {
-            position.x = 524;
+            position.y = 156;
         }
+
+
 
 
         pacManCube.setPosition(position.x, position.y);
