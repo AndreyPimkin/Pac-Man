@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
+import java.util.ArrayList;
+
 import info.game.PacManGame;
 import info.game.sprites.Animation;
 import info.game.sprites.Dot;

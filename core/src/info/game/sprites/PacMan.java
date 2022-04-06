@@ -68,20 +68,20 @@ public class PacMan {
     public void update(float dt) {
         pacManAnimation.update(dt);
 
-        if (position.x < 0) {
-            position.x = 0;
+        if (position.x < 265) {
+            position.x = 265;
         }
-        if (position.x > PacManGame.WIDTH - 35) {
-            position.x = PacManGame.WIDTH - 35;
+        if (position.x > 560-35) {
+            position.x = 560-35;
         }
-        if (position.y < 111) {
-            position.y = 111;
+        if (position.y < 175-35) {
+            position.y = 175-35;
         }
-        if (position.y > PacManGame.HEIGHT - 35) {
-            position.y = PacManGame.HEIGHT - 35;
+        if (position.y > 382-35) {
+            position.y = 382-35;
         }
 
-
+/////
         if (position.y > 242 && position.x < 523 && position.x > 267 && position.y < 346) {
             position.y = 346;
         }
@@ -95,21 +95,29 @@ public class PacMan {
         else if (position.y < 343 && position.y > 208 && position.x < 524 && position.x > 477) {
             position.x = 525;
         }
-//hjjjjj
-        if (position.y > 150 && position.x < 523 && position.x > 267 && position.y < 205) {
-            position.y = 205;
-        }
-        else if (position.y < 150 && position.x < 523 && position.x > 267 & position.y > 207) {
+/////
+
+        if (position.y > 176 && position.x < 523 && position.x > 267 && position.y < 208) {
             position.y = 207;
         }
-        if (position.y < 205 && position.y > 150 && position.x > 266 && position.x < 348) {
+        else if (position.y < 176 && position.x < 523 && position.x > 267 & position.y > 139) {
+            position.y = 139;
+        }
+        if (position.y < 204 && position.y > 140  && position.x > 266 && position.x < 348) {
             position.x = 265;
         }
-        else if (position.y < 205 && position.y > 150 && position.x < 524 && position.x > 477) {
+        else if (position.y < 204 && position.y > 140 && position.x < 524 && position.x > 477) {
             position.x = 525;
         }
-//из-за чего не робит
 
+
+//////
+        if (position.y > 80 && position.x < 415 && position.x > 355 && position.y < 160) {
+            position.x = 355;
+        }
+        else if (position.y > 80 && position.x < 435 && position.x > 415 && position.y < 160) {
+            position.x = 435;
+        }
 
 
         pacManCube.setPosition(position.x, position.y);
