@@ -10,6 +10,7 @@ import jdk.internal.org.jline.terminal.MouseEvent;
 public class MenuState extends State {
     private Texture background;
     private Texture button;
+
     public MenuState(GameStateManager gsm) {
         super(gsm);
         background = new Texture("Picture/background.jpg");
@@ -18,8 +19,9 @@ public class MenuState extends State {
 
     @Override
     protected void handleInput() {
-        if(Gdx.input.justTouched()){
+        if (Gdx.input.justTouched()) {
             gsm.set((new PlayState(gsm)));
+            PacManGame.MUSIC = "STOP";
         }
 
 
@@ -35,7 +37,7 @@ public class MenuState extends State {
     public void render(SpriteBatch sb) {
         sb.begin();
         sb.draw(background, 0, 0, PacManGame.WIDTH, PacManGame.HEIGHT);
-        sb.draw(button, PacManGame.WIDTH/2 - 130, PacManGame.HEIGHT - 150, 260, 97);
+        sb.draw(button, PacManGame.WIDTH / 2 - 130, PacManGame.HEIGHT - 150, 260, 97);
         sb.end();
 
 

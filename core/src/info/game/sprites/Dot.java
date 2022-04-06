@@ -1,6 +1,7 @@
 package info.game.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Dot {
@@ -8,6 +9,7 @@ public class Dot {
     public static int DOTS_SIZE = 5;
     private Texture dot;
     private Vector2 posDot;
+    private Rectangle dotCube;
 
     public static int getFLUCTUATION() {
         return FLUCTUATION;
@@ -24,7 +26,20 @@ public class Dot {
     public Dot(float x, float y){
         dot = new Texture("Picture/dot.png");
         posDot = new Vector2(x, y);
+        dotCube = new Rectangle(posDot.x, posDot.y, DOTS_SIZE, DOTS_SIZE);
     }
 
+   public void reposition(){
+        dotCube.setPosition(posDot.x, posDot.y);
+    }
+
+    public boolean collides(Rectangle player){
+        return player.overlaps(dotCube);
+    }
+
+    public void dispose() {
+        dot.dispose();
+
+    }
 
 }

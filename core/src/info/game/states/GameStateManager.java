@@ -2,33 +2,34 @@ package info.game.states;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import  java.util.Stack;
+import java.util.Stack;
 
 public class GameStateManager {
-    private  Stack<State> states;
+    private Stack<State> states;
 
-    public  GameStateManager(){
+    public GameStateManager() {
         states = new Stack<State>();
     }
 
-    public  void push(State state){
+    public void push(State state) {
         states.push(state);
     } // помещает экран в вершину
 
-    public void pop(){
+    public void pop() {
         states.pop().dispose();
     } // освобождаем ресурсы
 
-    public void set(State state){ // удаляет верхний экран
+    public void set(State state) { // удаляет верхний экран
         states.pop().dispose();
         states.push(state);
     }
 
-    public void update(float dt){
+    public void update(float dt) {
         states.peek().update(dt);
-    } //  возвращает верхний элемент
-     public void render(SpriteBatch sb){
+    }
+
+    public void render(SpriteBatch sb) {
         states.peek().render(sb);
-     } // состояние из верха
+    } // состояние из верха
 
 }

@@ -29,59 +29,61 @@ import info.game.states.MenuState;
 import info.game.states.PlayState;
 
 public class PacManGame extends ApplicationAdapter {
-	public static final int WIDTH = 825;
-	public static final int HEIGHT = 525;
-	public static final int SPEED = 2;
-	public static final float VOLUME = 0f;
-	public static final String TITLE = "Pac-Man";
-	public static final String ICON = "Picture/icon.png";
-	private GameStateManager gsm;
-	private SpriteBatch batch;
-	private Music music;
-	private Music musicEnd;
-	public static String MUSIC = "ONE";
+    public static final int WIDTH = 825;
+    public static final int HEIGHT = 525;
+    public static final int SPEED = 2;
+    public static final float VOLUME = 0f;
+    public static final String TITLE = "Pac-Man";
+    public static final String ICON = "Picture/icon.png";
+    private GameStateManager gsm;
+    private SpriteBatch batch;
+    private Music music;
+    private Music musicEnd;
+    public static String MUSIC = "ONE";
 
 
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
+        gsm = new GameStateManager();
+        music = Gdx.audio.newMusic((Gdx.files.internal("Sound/pacman_beginning.mp3")));
+        musicEnd = Gdx.audio.newMusic((Gdx.files.internal("Sound/pacman_death.mp3")));
+        music.setLooping(true);
+        music.setVolume(VOLUME);
+        musicEnd.setVolume(VOLUME);
+        musicEnd.stop();
+        music.play();
+        Gdx.gl.glClearColor(1, 0, 0, 1);
+        gsm.push(new MenuState(gsm));
+    }
 
-	@Override
-	public void create(){
-		batch = new SpriteBatch();
-		gsm = new GameStateManager();
-		music = Gdx.audio.newMusic((Gdx.files.internal("Sound/pacman_beginning.mp3")));
-		musicEnd = Gdx.audio.newMusic((Gdx.files.internal("Sound/pacman_death.mp3")));
-		music.setLooping(true);
-		music.setVolume(VOLUME);
-		musicEnd.setVolume(VOLUME);
-		musicEnd.stop();
-		music.play();
-		Gdx.gl.glClearColor(1,0,0,1);
-		gsm.push(new MenuState(gsm));
-	}
-	public void render(){
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		if(MUSIC.equals("TWO")){
-			music.stop();
-			music.setLooping(false);
-			musicEnd.play();
-			MUSIC = "STOP";
-		}
-		else if(MUSIC.equals("ONE")){
-			musicEnd.stop();
-			music.setLooping(true);
-			music.play();
-		}
+    public void render() {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        if (MUSIC.equals("STOP")) {
+            music.stop();
+        } else if (MUSIC.equals("TWO")) {
+            music.stop();
+            music.setLooping(false);
+            musicEnd.play();
+            MUSIC = "STOP";
+        } else if (MUSIC.equals("ONE")) {
+            musicEnd.stop();
+            music.setLooping(true);
+            music.play();
+        }
 
 
-		gsm.update(Gdx.graphics.getDeltaTime()); // обновляет экран в секундах
-		gsm.render(batch); // отрисовка верхнего экрана в стеке
+        gsm.update(Gdx.graphics.getDeltaTime());
+        gsm.render(batch);
 
-	}
-	public void dispose() {
-		super.dispose();
-		music.dispose();
-		musicEnd.dispose();
+    }
 
-	}
+    public void dispose() {
+        super.dispose();
+        music.dispose();
+        musicEnd.dispose();
+
+    }
 
 }
 

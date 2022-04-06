@@ -1,5 +1,4 @@
 package info.game.sprites;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -26,18 +25,22 @@ public class Ghost {
     }
 
     public void  reposition(){
-       if(posGhostOne.y <= 348){
+       if(posGhostOne.y <= 348 && posGhostOne.y > 260 && posGhostOne.x > 320){
            posGhostOne.y += 0.01;
         }
-       if(posGhostOne.y >= 348 && posGhostOne.x >262){
+       else if(posGhostOne.y >= 348 && posGhostOne.x >262){
            posGhostOne.x -= 0.01;
        }
-       else if(posGhostOne.y >= 132 && posGhostOne.x < 262){
-           posGhostOne.y -= 0.02;
+       else if(posGhostOne.y >= 205 && posGhostOne.x < 262){
+           posGhostOne.y -= 0.01;
        }
-       else if(posGhostOne.y <= 132 && posGhostOne.x > 50){
-           posGhostOne.x -= 0.02;
+       else if(posGhostOne.y < 205 && posGhostOne.x < 525){
+           posGhostOne.x += 0.01;
        }
+       else if(posGhostOne.y < 385 && posGhostOne.x >= 525){
+           posGhostOne.y += 0.01;
+       }
+
        ghostOneCube.setPosition(posGhostOne.x, posGhostOne.y);
     }
 

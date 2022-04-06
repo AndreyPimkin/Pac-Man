@@ -9,6 +9,7 @@ import info.game.PacManGame;
 public class GameOver extends State {
     private Texture background;
     private Texture gameOver;
+
     public GameOver(GameStateManager gsm) {
         super(gsm);
         background = new Texture("Picture/background.jpg");
@@ -17,9 +18,8 @@ public class GameOver extends State {
 
     @Override
     protected void handleInput() {
-        if(Gdx.input.justTouched()){
+        if (Gdx.input.justTouched()) {
             gsm.set((new PlayState(gsm)));
-            PacManGame.MUSIC = "ONE";
         }
 
 
@@ -35,7 +35,7 @@ public class GameOver extends State {
     public void render(SpriteBatch sb) {
         sb.begin();
         sb.draw(background, 0, 0, PacManGame.WIDTH, PacManGame.HEIGHT);
-        sb.draw(gameOver, PacManGame.WIDTH/2 - 130, PacManGame.HEIGHT - 150, 260, 97);
+        sb.draw(gameOver, PacManGame.WIDTH / 2 - 130, PacManGame.HEIGHT - 150, 260, 97);
         sb.end();
 
 
